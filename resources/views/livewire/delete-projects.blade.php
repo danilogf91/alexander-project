@@ -8,12 +8,12 @@
 
     <x-dialog-modal wire:model.live="openModal">
         <x-slot name="title" class="font-extrabold text-xl">
-            {{ __('Delete user') }}
+            {{ __('Delete Project') }}
         </x-slot>
 
         <x-slot name="content">
             <span class="font-extrabold text-xl">
-                {{ $user->name }}
+                {{ $project->name }}
             </span>
         </x-slot>
 
@@ -22,7 +22,7 @@
                 {{ __('Cancel') }}
             </x-secondary-button>
 
-            <x-danger-button class="ml-3" wire:click='delete({{ $user->id }})' wire:loading.attr="disabled">
+            <x-danger-button class="ml-3" wire:click='delete({{ $project->id }})' wire:loading.attr="disabled">
                 {{ __('Delete User') }}
             </x-danger-button>
         </x-slot>

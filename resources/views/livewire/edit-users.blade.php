@@ -1,8 +1,8 @@
 <div>
     <button
         wire:click="$set('openModal', true)"
-        class="px-3 py-1 mr-1 bg-green-500 text-white rounded">
-        E
+        class="w-6 h-6 mr-1 bg-stone-500 text-white rounded">
+        <x-icon name="pencil-square" />
     </button>
 
     <x-dialog-modal wire:model.live="openModal">
@@ -14,16 +14,18 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="col-span-3">
                     <label
+
                         htmlFor="name"
                         class="block text-sm font-medium"
                     >
                         Name
                     </label>
                     <input
+                        {{-- disabled --}}
                         wire:model.live="name"
                         type="text"
                         name="name"
-                        class="mt-1 p-2 w-full border rounded"
+                        class="mt-1 p-2 w-full border rounded disabled:opacity-50"
                     />
                     <x-input-error for='name'/>
                 </div>
@@ -35,10 +37,11 @@
                         Email
                     </label>
                     <input
-                        wire:model="email"
+                        disabled
+                        wire:model.live="email"
                         type="email"
                         name="email"
-                        class="mt-1 p-2 w-full border rounded"
+                        class="mt-1 p-2 w-full border rounded disabled:opacity-50"
                     />
                     <x-input-error for='email'/>
                 </div>
@@ -51,10 +54,11 @@
                         Role
                     </label>
                     <select
+                        {{-- disabled --}}
                         wire:model.live="is_admin"
                         name="is_admin"
-                        class="mt-1 p-2 w-full border rounded">
-                    <option value="0">Member</option>
+                        class="mt-1 p-2 w-full border rounded disabled:opacity-50">
+                    <option value="0">User</option>
                     <option value="1">Admin</option>
                 </select>
                     <x-input-error for='is_admin'/>
@@ -71,7 +75,7 @@
                         name="active"
                         class="mt-1 p-2 w-full border rounded"
                     >
-                        <option value="1">Enable</option>
+                        <option value="1">Enabled</option>
                         <option value="0">Disable</option>
                     </select>
                     <x-input-error for='active'/>
@@ -100,9 +104,9 @@
                 {{ __('Cancel') }}
             </x-secondary-button>
 
-            <x-danger-button class="ml-3" wire:click='delete({{ $user->id }})' wire:loading.attr="disabled">
+            <x-button class="ml-3" wire:click='update({{ $user->id }})' wire:loading.attr="disabled">
                 {{ __('Update') }}
-            </x-danger-button>
+            </x-button>
         </x-slot>
     </x-dialog-modal>
 </div>

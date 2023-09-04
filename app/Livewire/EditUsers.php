@@ -4,23 +4,37 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Livewire\Component;
+use Livewire\Attributes\Rule;
 
 class EditUsers extends Component
 {
-    public $user;
-
+    public User $user;
     public $openModal = false;
 
+    #[Rule('required|string|max:255')]
     public $name = '';
+
+    // #[Rule('required|email|unique:users,email')]
     public $email = '';
+
     public $is_admin;
+    #[Rule('in:0,1')]
+
+    #[Rule('in:0,1')]
     public $active;
+
     public $created_at;
 
-    public function edit(User $user)
+    public function update(User $user)
     {
+        $this->validate();
+        $user->name = $this->name;
+        $user->email = $this->email;
+        $user->is_admin = $this->is_admin;
+        $user->active = $this->active;
+        $user->save();
         $this->openModal = false;
-        $this->dispatch('edited-user');
+        $this->dispatch('edit-users');
     }
 
     public function mount(User $user)

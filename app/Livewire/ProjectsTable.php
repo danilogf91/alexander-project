@@ -2,30 +2,20 @@
 
 namespace App\Livewire;
 
-use App\Models\User;
+use App\Models\Project;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\On;
 
-class UsersTable extends Component
+class ProjectsTable extends Component
 {
     use WithPagination;
 
+    public $perPage = 10;
     public $search = '';
-    public $admin = '';
 
     public $sortBy = 'id';
     public $sortDir = 'DESC';
-
-    public $perPage = 10;
-
-    public $openModal = false;
-
-    public function delete(User $user)
-    {
-        $user->delete();
-        $this->openModal = false;
-    }
 
     public function setSortBy($sortByField)
     {
@@ -38,17 +28,18 @@ class UsersTable extends Component
         $this->sortDir = 'DESC';
     }
 
-    #[On('edit-users')]
-    #[On('user-deleted')]
+    #[On('project-deleted')]
+    #[On('project-created')]
+    #[On('edit-projects')]
     public function render()
     {
         return view(
-            'livewire.users-table',
+            'livewire.projects-table',
             [
-                'users' => User::search($this->search)
-                    ->when($this->admin !== '', function ($query) {
-                        $query->where('is_admin', $this->admin);
-                    })
+                'projects' => Project::search($this->search)
+                    // ->when($this->admin !== '', function ($query) {
+                    //     $query->where('is_admin', $this->admin);
+                    // })
                     ->orderBy($this->sortBy, $this->sortDir)
                     ->paginate($this->perPage)
             ]

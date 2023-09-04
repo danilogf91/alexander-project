@@ -19,7 +19,7 @@
                                     type="text"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
                                     placeholder="Search" required="">
-                            </div>
+                                </div>
                         </div>
 
                         <div class="py-4 px-3">
@@ -80,14 +80,14 @@
                                         {{ $user->name }}</th>
                                     <td class="px-2 py-1">{{ $user->email }}</td>
                                     <td class="px-2 py-1 {{ $user->is_admin ? ' text-green-500': ' text-blue-500' }}">
-                                        {{ $user->is_admin ? 'Admin':'Member' }}</td>
+                                        {{ $user->is_admin ? 'Admin':'User' }}</td>
                                     <td class="px-2 py-1 {{ $user->active ? ' text-green-500': ' text-red-500' }}">
-                                        {{ $user->active ? 'Enable':'Disabled' }}</td>
+                                        {{ $user->active ? 'Enabled':'Disabled' }}</td>
                                     <td class="px-2 py-1">{{ $user->created_at }}</td>
                                     <td class="px-2 py-1">{{ $user->updated_at }}</td>
                                     <td class="px-2 py-1 flex items-center justify-end">
                                         <livewire:edit-users :key="$user->id" :user="$user" />
-                                        <livewire:delete-users :key="$user->id" :user="$user" />
+                                        <livewire:delete-users :key="$user->email" :user="$user" />
                                     </td>
                                 </tr>
                                 @endforeach
