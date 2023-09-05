@@ -30,6 +30,16 @@
                     </div>
 
                     <div class="py-4 px-3">
+                            <div class="space-x-4 items-center mb-3">
+                                <button
+                                    wire:click="export"
+                                    class="p-1 flex items-center bg-green-500 text-white rounded">
+                                    Export <x-icon class="ml-1 w-8 h-8" name="circle-stack" />
+                                </button>
+                            </div>
+                    </div>
+
+                    <div class="py-4 px-3">
                         <div class="flex ">
                             <div class="flex space-x-4 items-center mb-3">
                                 <label class="w-32 text-sm font-medium text-gray-900">Per Page</label>
@@ -82,7 +92,21 @@
                                 {{ $project->id }}</th>
                                 <th scope="row"
                                     class="px-2 py-1 font-sm text-gray-900 whitespace-nowrap dark:text-white">
+
+                                        {{-- <a href="{{ route('data', ['id' => $project->id]) }}">
+                                            {{ $project->name }}
+                                        </a> --}}
+                                    @if ($project->data_uploaded)
+                                    <span role="button" class="pointer text-red-500 hover:text-red-600 hover:underline">
+                                        <a href="{{ route('data', ['id' => $project->id]) }}">
+                                            {{ $project->name }}
+                                        </a>
+                                    @else
+                                    <span>
                                     {{ $project->name }}
+                                    @endif
+                                    </span>
+
                                 </th>
 
                                 <td class="px-2 py-1">{{ $project->pda_code }}</td>

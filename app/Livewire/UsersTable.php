@@ -2,10 +2,12 @@
 
 namespace App\Livewire;
 
+use App\Exports\UsersExport;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\On;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UsersTable extends Component
 {
@@ -45,6 +47,11 @@ class UsersTable extends Component
 
         $this->sortBy = $sortByField;
         $this->sortDir = 'DESC';
+    }
+
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
 
     #[On('edit-users')]

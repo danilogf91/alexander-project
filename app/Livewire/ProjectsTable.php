@@ -2,10 +2,12 @@
 
 namespace App\Livewire;
 
+use App\Exports\ProjectExport;
 use App\Models\Project;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\On;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProjectsTable extends Component
 {
@@ -35,6 +37,11 @@ class ProjectsTable extends Component
 
         $this->sortBy = $sortByField;
         $this->sortDir = 'DESC';
+    }
+
+    public function export()
+    {
+        return Excel::download(new ProjectExport, 'projects.xlsx');
     }
 
     #[On('project-deleted')]
