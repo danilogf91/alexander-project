@@ -14,12 +14,19 @@ class UsersTable extends Component
     public $search = '';
     public $admin = '';
 
+    public $is_admin_user = false;
+
     public $sortBy = 'id';
     public $sortDir = 'DESC';
 
     public $perPage = 10;
 
     public $openModal = false;
+
+    public function mount($is_admin)
+    {
+        $this->is_admin_user = $is_admin;
+    }
 
     public function delete(User $user)
     {

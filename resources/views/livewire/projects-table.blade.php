@@ -161,7 +161,7 @@
             <!-- Start coding here -->
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                 <div class="flex items-center justify-between d px-4 py-1">
-                    <div class="flex">
+                    <div class="flex items-center">
                         <div class="relative w-full">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400"
@@ -177,6 +177,12 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
                                 placeholder="Search" required="">
                             </div>
+
+                            <button
+                                wire:click="$set('search', '')"
+                                class="w-6 h-6 ml-3 bg-red-500 text-white rounded">
+                                <x-icon name="x-mark" />
+                            </button>
                     </div>
 
                     <div class="py-4 px-3">
@@ -196,12 +202,14 @@
                         </div>
                     </div>
 
+                    @if ($is_admin_user)
                     <div class="flex space-x-3">
                         <div class="flex space-x-3 items-center">
 
                             <livewire:create-projects/>
                         </div>
                     </div>
+                    @endif
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -214,7 +222,11 @@
                                 <th wire:click="setSortBy('state')" scope="col" class="px-2 py-1">state</th>
                                 <th wire:click="setSortBy('investments')" scope="col" class="px-2 py-1">investments</th>
                                 <th wire:click="setSortBy('justification')" scope="col" class="px-2 py-1">justification</th>
-                                <th scope="col" class="px-2 py-1"></th>
+                                @if ($is_admin_user)
+                                <th scope="col" class="px-2 py-1">
+                                    <span class="sr-only">Actions</span>
+                                </th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -234,12 +246,14 @@
                                 <td class="px-2 py-1">{{ $project->state }}</td>
                                 <td class="px-2 py-1">{{ $project->investments }}</td>
                                 <td class="px-2 py-1">{{ $project->justification }}</td>
-                                <td class="px-2 py-1 flex items-center justify-center">
-                                    <livewire:edit-projects :key="$project->id" :project="$project" />
-                                    <livewire:delete-projects :key="$project->id.$project->name" :project="$project" />
-                                    <livewire:save-projects-data :key="$project->name.$project->id" :project="$project" />
 
-                                </td>
+                                @if ($is_admin_user)
+                                    <td class="px-2 py-1 flex items-center justify-center">
+                                        <livewire:edit-projects :key="$project->id" :project="$project" />
+                                        <livewire:delete-projects :key="$project->id.$project->name" :project="$project" />
+                                        <livewire:save-projects-data :key="$project->name.$project->id" :project="$project" />
+                                    </td>
+                                @endif
                             </tr>
                             @endforeach
 

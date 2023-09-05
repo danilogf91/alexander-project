@@ -6,6 +6,6 @@
     </x-slot>
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @livewire('projects-table')
+            <livewire:projects-table :is_admin="$user->is_admin"/>
             </div>
 </x-app-layout>
