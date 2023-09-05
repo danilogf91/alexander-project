@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('pda_code');
+            $table->integer('data_uploaded')->default(0);;
             $table->float('rate');
             $table->enum('state', ['planification', 'execution', 'finished'])->default('planification');
             $table->enum('investments', [

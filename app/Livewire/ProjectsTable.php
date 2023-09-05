@@ -18,10 +18,12 @@ class ProjectsTable extends Component
     public $sortDir = 'DESC';
 
     public $is_admin_user = false;
+    public $active = false;
 
-    public function mount($is_admin)
+    public function mount($is_admin, $active)
     {
         $this->is_admin_user = $is_admin;
+        $this->active = $active;
     }
 
     public function setSortBy($sortByField)
@@ -38,6 +40,8 @@ class ProjectsTable extends Component
     #[On('project-deleted')]
     #[On('project-created')]
     #[On('edit-projects')]
+    #[On('upload-data')]
+    #[On('delete-data')]
     public function render()
     {
         return view(

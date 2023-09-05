@@ -22,10 +22,12 @@ class UsersTable extends Component
     public $perPage = 10;
 
     public $openModal = false;
+    public $active = false;
 
-    public function mount($is_admin)
+    public function mount($is_admin, $active)
     {
         $this->is_admin_user = $is_admin;
+        $this->active = $active;
     }
 
     public function delete(User $user)

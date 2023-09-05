@@ -1,20 +1,18 @@
 <div>
     <button
         wire:click="$set('openModal', true)"
-        class="w-6 h-6 mr-1 bg-yellow-500 text-white rounded">
-        <x-icon name="table-cells" />
+        class="w-6 h-6 mr-1 bg-blue-500 text-white rounded">
+        <x-icon name="document-minus" />
     </button>
 
     <x-dialog-modal wire:model.live="openModal">
         <x-slot name="title" class="font-extrabold text-xl">
-            {{-- {{ __('Upload Data') }}                             --}}
-                <input wire:model='excel_file' type="file" name="excel_file">
-                <x-input-error for='excel_file'/>
+            {{ __('Delete data') }}
         </x-slot>
 
         <x-slot name="content">
             <span class="font-extrabold text-xl">
-                <h1>FILE UPLOAD</h1>
+                {{ $project->name }}
             </span>
         </x-slot>
 
@@ -23,9 +21,10 @@
                 {{ __('Cancel') }}
             </x-secondary-button>
 
-            <x-button class="ml-3" wire:click='saveData' wire:loading.attr="disabled">
-                {{ __('Save Data') }}
-            </x-button>
+            <x-danger-button class="ml-3" wire:click='delete' wire:loading.attr="disabled">
+                {{ __('Delete Data') }}
+            </x-danger-button>
         </x-slot>
     </x-dialog-modal>
+
 </div>

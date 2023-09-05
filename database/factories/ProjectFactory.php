@@ -20,6 +20,7 @@ class ProjectFactory extends Factory
             'name' => $this->faker->word,
             'pda_code' => $this->faker->unique()->numberBetween(1000, 9999),
             'rate' => $this->faker->randomFloat(2, 0, 100),
+            // 'data_uploaded' => $this->faker->randomFloat(2, 0, 1),
             'state' => $this->faker->randomElement(['planification', 'execution', 'finished']),
             'investments' => $this->faker->randomElement([
                 'innovation',

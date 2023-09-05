@@ -1,161 +1,5 @@
-{{-- <div class="mt-4" x-data="{}" x-on:confirming-delete-user.window="setTimeout(() => $refs.password.focus(), 250)">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="col-span-3">
-            <label
-                htmlFor="name"
-                class="block text-sm font-medium"
-            >
-                Project Name
-            </label>
-            <input
-                wire:model.live.debounce.250ms="form.name"
-                type="text"
-                name="name"
-                class="mt-1 p-2 w-full border rounded"
-            />
-            <x-input-error for='name'/>
-        </div>
-        <div class="col-span-3">
-            <label
-                htmlFor="pda_code"
-                class="block text-sm font-medium"
-            >
-                PDA code
-            </label>
-            <input
-                wire:model.live.debounce.250ms="pda_code"
-                type="text"
-                name="pda_code"
-                class="mt-1 p-2 w-full border rounded"
-            />
-            <x-input-error for='pda_code'/>
-        </div>
-
-        <div class="md:col-span-1 col-span-3">
-            <label
-                htmlFor="rate"
-                class="block text-sm font-medium"
-            >
-                Rate $ to €
-            </label>
-            <input
-                wire:model.live.debounce.250ms="rate"
-                type="number"
-                min={0}
-                step={0.01}
-                name="rate"
-                class="mt-1 p-2 w-full border rounded"
-            />
-            <x-input-error for='rate'/>
-        </div>
-        <div class="md:col-span-1 col-span-3">
-            <label
-                htmlFor="state"
-                class="block text-sm font-medium"
-            >
-                Project State
-            </label>
-            <select
-                wire:model.live.debounce.250ms="state"
-                name="state"
-                class="mt-1 p-2 w-full border rounded"
-            >
-                <option value="planification">
-                    Planification
-                </option>
-                <option value="execution">Execution</option>
-                <option value="finished">Finished</option>
-            </select>
-            <x-input-error for='planification'/>
-        </div>
-        <div class="md:col-span-1 col-span-3">
-            <label
-                htmlFor="investments"
-                class="block text-sm font-medium"
-            >
-                Investments
-            </label>
-            <select
-                wire:model.live.debounce.250ms="investments"
-                name="investments"
-                class="mt-1 p-2 w-full border rounded"
-            >
-                <option value="innovation">Innovation</option>
-                <option value="efficiency_&_saving">
-                    Efficiency & Saving
-                </option>
-                <option value="replacement_&_restructuring">
-                    Replacement & Restructuring
-                </option>
-                <option value="quality_&_hygiene">
-                    Quality & Hygiene
-                </option>
-                <option value="health_&_safety">
-                    Health & Safety
-                </option>
-                <option value="environment">Environment</option>
-                <option value="maintenance">Maintenance</option>
-                <option value="capacity_increase">
-                    Capacity Increase
-                </option>
-            </select>
-            <x-input-error for='innovation'/>
-        </div>
-        <div class="md:col-span-1 col-span-3">
-            <label
-                htmlFor="justification"
-                class="block text-sm font-medium"
-            >
-                Justification
-            </label>
-            <select
-                wire:model.live.debounce.250ms="justification"
-                name="justification"
-                class="mt-1 p-2 w-full border rounded"
-            >
-                <option value="normal_capex">
-                    Normal Capex
-                </option>
-                <option value="special_project">
-                    Justification
-                </option>
-            </select>
-            <x-input-error for='normal_capex'/>
-        </div>
-        <div class="md:col-span-1 col-span-3">
-            <label
-                htmlFor="start_date"
-                class="block text-sm font-medium"
-            >
-                Start Date
-            </label>
-            <input
-                wire:model.live.debounce.250ms="start_date"
-                type="date"
-                name="start_date"
-                class="mt-1 p-2 w-full border rounded"
-            />
-            <x-input-error for='start_date'/>
-        </div>
-        <div class="md:col-span-1 col-span-3">
-            <label
-                htmlFor="finish_date"
-                class="block text-sm font-medium"
-            >
-                Ending Date
-            </label>
-            <input
-                wire:model.live.debounce.250ms="finish_date"
-                type="date"
-                name="finish_date"
-                class="mt-1 p-2 w-full border rounded"
-            />
-            <x-input-error for='finish_date'/>
-        </div>
-    </div>
-</div> --}}
-
 <div>
+@if ($active)
     <section class="mt-4">
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
             <!-- Start coding here -->
@@ -248,10 +92,15 @@
                                 <td class="px-2 py-1">{{ $project->justification }}</td>
 
                                 @if ($is_admin_user)
-                                    <td class="px-2 py-1 flex items-center justify-center">
+                                    <td class="px-2 py-1 flex items-center justify-start">
                                         <livewire:edit-projects :key="$project->id" :project="$project" />
                                         <livewire:delete-projects :key="$project->id.$project->name" :project="$project" />
-                                        <livewire:save-projects-data :key="$project->name.$project->id" :project="$project" />
+
+                                        @if (!$project->data_uploaded)
+                                            <livewire:save-projects-data :key="$project->name.$project->id" :project="$project" />
+                                        @else
+                                            <livewire:delete-projects-data :key="$project->id.$project->name.$project->id" :project="$project" />
+                                        @endif
                                     </td>
                                 @endif
                             </tr>
@@ -267,4 +116,7 @@
             </div>
         </div>
     </section>
+@else
+    @livewire('user-disabled')
+@endif
 </div>

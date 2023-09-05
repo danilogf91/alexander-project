@@ -17,8 +17,8 @@ class EditUsers extends Component
     // #[Rule('required|email|unique:users,email')]
     public $email = '';
 
-    public $is_admin;
     #[Rule('in:0,1')]
+    public $is_admin;
 
     #[Rule('in:0,1')]
     public $active;

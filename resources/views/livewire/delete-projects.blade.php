@@ -23,7 +23,7 @@
             </x-secondary-button>
 
             <x-danger-button class="ml-3" wire:click='delete({{ $project->id }})' wire:loading.attr="disabled">
-                {{ __('Delete User') }}
+                {{ __('Delete Project') }}
             </x-danger-button>
         </x-slot>
     </x-dialog-modal>
