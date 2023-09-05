@@ -28,6 +28,7 @@ return new class extends Migration
                 'capacity_increase'
             ])->default('innovation');
             $table->enum('justification', ['normal_capex', 'special_project'])->default('normal_capex');
+            $table->string('data_file_name');
             $table->date('start_date');
             $table->date('finish_date');
             $table->timestamps();

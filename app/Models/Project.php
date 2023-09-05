@@ -17,6 +17,7 @@ class Project extends Model
         'state',
         'investments',
         'justification',
+        'data_file_name',
         'start_date',
         'finish_date',
     ];
