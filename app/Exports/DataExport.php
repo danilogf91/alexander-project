@@ -35,7 +35,7 @@ class DataExport implements FromCollection, WithHeadings
                 'unit_price',
                 'global_price',
                 'stage',
-                'real',
+                'real_value',
                 'committed',
                 'percentage',
                 'executed_dollars',

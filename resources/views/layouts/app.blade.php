@@ -42,6 +42,9 @@
 
         @stack('modals')
 
-        @livewireScripts
+
+        <livewire:scripts />
+
+        @livewireChartsScripts
     </body>
 </html>

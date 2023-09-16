@@ -25,22 +25,29 @@ class ViewController extends Controller
         return view('projects')->with('user', $user);
     }
 
-    public function data($id)
+    public function data($id = null)
     {
-        $project = Project::find($id);
+        if ($id) {
+            $project = Project::find($id);
 
-        if (!$project) {
-            abort(404);
+            if (!$project) {
+                abort(404);
+            }
+
+            $name = $project->name;
+        } else {
+            $latestProject = Project::latest('id')->first();
+
+            if (!$latestProject) {
+                abort(404);
+            }
+
+            $name = $latestProject->name;
+            $id = $latestProject->id;
         }
-
-        $data = $project->data;
-
-        // dd($project);
-
-        $name = $project->name;
 
         $user = auth()->user();
 
-        return view('data', compact(['data', 'name', 'id', 'user']));
+        return view('data', compact(['name', 'id', 'user']));
     }
 }

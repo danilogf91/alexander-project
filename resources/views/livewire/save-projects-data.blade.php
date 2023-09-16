@@ -8,7 +8,8 @@
     <x-dialog-modal wire:model.live="openModal">
         <x-slot name="title" class="font-extrabold text-xl">
             {{-- {{ __('Upload Data') }}                             --}}
-                <input wire:model='excel_file' type="file" name="excel_file">
+                <input role="button" class="pointer text-stone-800 hover:text-stone-600 hover:underline"
+                wire:model='excel_file' type="file" name="excel_file">
                 <x-input-error for='excel_file'/>
         </x-slot>
 

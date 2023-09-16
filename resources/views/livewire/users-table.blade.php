@@ -24,7 +24,7 @@
 
                                 <button
                                     wire:click="$set('search', '')"
-                                    class="w-6 h-6 ml-3 bg-red-500 text-white rounded">
+                                    class="w-6 h-6 ml-3 bg-red-500 hover:bg-red-400 text-white rounded">
                                     <x-icon name="x-mark" />
                                 </button>
                         </div>
@@ -33,7 +33,10 @@
                             <div class="space-x-4 items-center mb-3">
                                 <button
                                     wire:click="export"
-                                    class="p-1 flex items-center bg-green-500 text-white rounded">
+                                    class="
+                                     bg-green-500  border border-transparent rounded-md font-semibold text-xs text-white uppercase
+                                     tracking-widest hover:bg-green-400 focus:bg-green-400 active:bg-green-600 focus:outline-none focus:ring-2
+                                     focus:ring-green-700 focus:ring-offset-2 transition ease-in-out duration-150 p-1 flex items-center">
                                     Export <x-icon class="ml-1 w-8 h-8" name="circle-stack" />
                                 </button>
                             </div>
@@ -73,13 +76,13 @@
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
-                                    <th wire:click="setSortBy('id')" scope="col" class="px-2 py-1">id</th>
-                                    <th wire:click="setSortBy('name')" scope="col" class="px-2 py-1">name</th>
-                                    <th wire:click="setSortBy('email')" scope="col" class="px-2 py-1">email</th>
-                                    <th wire:click="setSortBy('is_admin')" scope="col" class="px-2 py-1">Role</th>
-                                    <th wire:click="setSortBy('active')" scope="col" class="px-2 py-1">Active</th>
-                                    <th wire:click="setSortBy('created_at')" scope="col" class="px-2 py-1">Joined</th>
-                                    <th scope="col" class="px-2 py-1">Last update</th>
+                                    <th wire:click="setSortBy('id')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">id</th>
+                                    <th wire:click="setSortBy('name')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">name</th>
+                                    <th wire:click="setSortBy('email')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">email</th>
+                                    <th wire:click="setSortBy('is_admin')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">Role</th>
+                                    <th wire:click="setSortBy('active')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">Active</th>
+                                    <th wire:click="setSortBy('created_at')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">Joined</th>
+                                    <th scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">Last update</th>
                                     @if ($is_admin_user)
                                         <th scope="col" class="px-2 py-1">
                                             <span class="sr-only">Actions</span>

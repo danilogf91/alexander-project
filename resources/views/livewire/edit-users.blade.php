@@ -21,7 +21,6 @@
                         Name
                     </label>
                     <input
-                        {{-- disabled --}}
                         wire:model.live="name"
                         type="text"
                         name="name"
@@ -54,7 +53,6 @@
                         Role
                     </label>
                     <select
-                        {{-- disabled --}}
                         wire:model.live="is_admin"
                         name="is_admin"
                         class="mt-1 p-2 w-full border rounded disabled:opacity-50">

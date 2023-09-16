@@ -24,7 +24,7 @@
 
                             <button
                                 wire:click="$set('search', '')"
-                                class="w-6 h-6 ml-3 bg-red-500 text-white rounded">
+                                class="w-6 h-6 ml-3 bg-red-500 hover:bg-red-400 text-white rounded">
                                 <x-icon name="x-mark" />
                             </button>
                     </div>
@@ -33,7 +33,10 @@
                             <div class="space-x-4 items-center mb-3">
                                 <button
                                     wire:click="export"
-                                    class="p-1 flex items-center bg-green-500 text-white rounded">
+                                    class="
+                                     bg-green-500  border border-transparent rounded-md font-semibold text-xs text-white uppercase
+                                     tracking-widest hover:bg-green-400 focus:bg-green-400 active:bg-green-600 focus:outline-none focus:ring-2
+                                     focus:ring-green-700 focus:ring-offset-2 transition ease-in-out duration-150 p-1 flex items-center">
                                     Export <x-icon class="ml-1 w-8 h-8" name="circle-stack" />
                                 </button>
                             </div>
@@ -69,13 +72,13 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
-                                <th wire:click="setSortBy('id')" scope="col" class="px-2 py-1">id</th>
-                                <th wire:click="setSortBy('name')" scope="col" class="px-2 py-1">name</th>
-                                <th wire:click="setSortBy('pda_code')" scope="col" class="px-2 py-1">pda code</th>
-                                <th wire:click="setSortBy('rate')" scope="col" class="px-2 py-1">rate</th>
-                                <th wire:click="setSortBy('state')" scope="col" class="px-2 py-1">state</th>
-                                <th wire:click="setSortBy('investments')" scope="col" class="px-2 py-1">investments</th>
-                                <th wire:click="setSortBy('justification')" scope="col" class="px-2 py-1">justification</th>
+                                <th wire:click="setSortBy('id')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">id</th>
+                                <th wire:click="setSortBy('name')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">name</th>
+                                <th wire:click="setSortBy('pda_code')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">pda code</th>
+                                <th wire:click="setSortBy('rate')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">rate</th>
+                                <th wire:click="setSortBy('state')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">state</th>
+                                <th wire:click="setSortBy('investments')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">investments</th>
+                                <th wire:click="setSortBy('justification')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">justification</th>
                                 @if ($is_admin_user)
                                 <th scope="col" class="px-2 py-1">
                                     <span class="sr-only">Actions</span>
@@ -93,9 +96,6 @@
                                 <th scope="row"
                                     class="px-2 py-1 font-sm text-gray-900 whitespace-nowrap dark:text-white">
 
-                                        {{-- <a href="{{ route('data', ['id' => $project->id]) }}">
-                                            {{ $project->name }}
-                                        </a> --}}
                                     @if ($project->data_uploaded)
                                     <span role="button" class="pointer text-red-500 hover:text-red-600 hover:underline">
                                         <a href="{{ route('data', ['id' => $project->id]) }}">
