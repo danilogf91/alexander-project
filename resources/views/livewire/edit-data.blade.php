@@ -144,6 +144,7 @@
                     <input
                         wire:model.live="global_price"
                         type="number"
+                        disabled
                         min="0"
                         name="global_price"
                         class="mt-1 p-2 w-full border rounded disabled:opacity-50"

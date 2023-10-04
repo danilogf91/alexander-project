@@ -45,6 +45,6 @@ class DataImport implements WithHeadingRow, ToModel
 
     public function headingRow(): int
     {
-        return 18;
+        return 1;
     }
 }

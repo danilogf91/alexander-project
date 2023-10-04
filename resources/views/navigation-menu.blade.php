@@ -20,7 +20,7 @@
                         {{ __('Users') }}
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('projects') }}" :active="request()->routeIs('projects')">
+                    <x-nav-link href="{{ route('projects') }}" :active="request()->routeIs('projects*')">
                         {{ __('Projects') }}
                     </x-nav-link>
 
@@ -157,7 +157,7 @@
             <x-responsive-nav-link href="{{ route('users') }}" :active="request()->routeIs('users')">
                 {{ __('Users') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('projects') }}" :active="request()->routeIs('projects')">
+            <x-responsive-nav-link href="{{ route('projects') }}" :active="request()->routeIs('projects*')">
                 {{ __('Projects') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{ route('data') }}" :disabled="true" :active="request()->routeIs('data')">

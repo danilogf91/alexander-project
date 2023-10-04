@@ -80,7 +80,10 @@
                             <tr>
                                 {{-- <th wire:click="setSortBy('id')" scope="col" class=" cursor-pointer hover:bg-gray-200 px-2 py-1">id</th> --}}
                                 <th wire:click="setSortBy('area')" scope="col" class=" cursor-pointer hover:bg-gray-200 px-1 py-1">area</th>
-                                <th scope="col" class="px-1 py-1"></th>
+
+                                @if ($is_admin_user)
+                                    <th scope="col" class="px-1 py-1"></th>
+                                @endif
                                 <th wire:click="setSortBy('group_1')" scope="col" class=" cursor-pointer hover:bg-gray-200 px-1 py-1">group 1</th>
                                 <th wire:click="setSortBy('group_2')" scope="col" class=" cursor-pointer hover:bg-gray-200 px-1 py-1">group 2</th>
                                 <th wire:click="setSortBy('general_classification')" scope="col" class=" cursor-pointer hover:bg-gray-200 px-1 py-1">classification</th>
@@ -105,18 +108,17 @@
 
                             <tr wire:key="{{ $item->id }}" class=" text-xs border-b dark:border-gray-700">
 
-                                {{-- <th scope="row"
-                                class="px-1 py-1 text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $item->id }}
-                                </th> --}}
-
                                 <th scope="row"
                                     class="px-1 py-1 text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $item->area }}
                                 </th>
-                                <td>
-                                    <livewire:edit-data :key="$item->id" :data="$item" />
-                                </td>
+
+                                @if ($is_admin_user)
+                                    <td>
+                                        <livewire:edit-data :key="$item->id" :data="$item" />
+                                    </td>
+                                @endif
+
                                 <td class="text-xs px-1 py-1">{{ $item->group_1 }}</td>
                                 <td class="text-xs px-1 py-1">{{ $item->group_2 }}</td>
                                 <td class="text-xs px-1 py-1">{{ $item->general_classification }}</td>

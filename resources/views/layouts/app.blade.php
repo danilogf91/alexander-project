@@ -19,10 +19,10 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="font-sans antialiased">
+    <body class="bg-custom">
         <x-banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen ">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->

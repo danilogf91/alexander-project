@@ -74,11 +74,14 @@
                             <tr>
                                 <th wire:click="setSortBy('id')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">id</th>
                                 <th wire:click="setSortBy('name')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">name</th>
+                                <th cope="col" class="px-2 py-1"></th>
                                 <th wire:click="setSortBy('pda_code')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">pda code</th>
                                 <th wire:click="setSortBy('rate')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">rate</th>
                                 <th wire:click="setSortBy('state')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">state</th>
                                 <th wire:click="setSortBy('investments')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">investments</th>
                                 <th wire:click="setSortBy('justification')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">justification</th>
+                                <th wire:click="setSortBy('start_date')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">start date</th>
+                                <th wire:click="setSortBy('finish_date')" scope="col" class="cursor-pointer hover:bg-gray-200 px-2 py-1">finish date</th>
                                 @if ($is_admin_user)
                                 <th scope="col" class="px-2 py-1">
                                     <span class="sr-only">Actions</span>
@@ -96,24 +99,39 @@
                                 <th scope="row"
                                     class="px-2 py-1 font-sm text-gray-900 whitespace-nowrap dark:text-white">
 
-                                    @if ($project->data_uploaded)
-                                    <span role="button" class="pointer text-red-500 hover:text-red-600 hover:underline">
-                                        <a href="{{ route('data', ['id' => $project->id]) }}">
-                                            {{ $project->name }}
-                                        </a>
+                                    @if ($project->data_uploaded && $is_admin_user)
+                                        <span role="button" class="pointer text-red-500 hover:text-red-600 hover:underline">
+                                            <a href="{{ route('data', ['id' => $project->id]) }}">
+                                                {{ $project->name }}
+                                            </a>
+                                        </span>
                                     @else
-                                    <span>
-                                    {{ $project->name }}
+                                        <span>
+                                            {{ $project->name }}
+                                        </span>
                                     @endif
-                                    </span>
-
                                 </th>
 
+                                <td class="px-2 py-1">
+                                    @if ($project->data_uploaded)
+                                        <span role="button" class="pointer text-red-500 hover:text-red-600 hover:underline">
+                                            <a href="/projects/{{ $project->id }}">
+                                                Dashboard
+                                            </a>
+                                        </span>
+                                    @else
+                                        <span>
+                                                No Data
+                                        </span>
+                                    @endif
+                                </td>
                                 <td class="px-2 py-1">{{ $project->pda_code }}</td>
                                 <td class="px-2 py-1">{{ $project->rate }}</td>
                                 <td class="px-2 py-1">{{ $project->state }}</td>
                                 <td class="px-2 py-1">{{ $project->investments }}</td>
                                 <td class="px-2 py-1">{{ $project->justification }}</td>
+                                <td class="px-2 py-1">{{ $project->start_date }}</td>
+                                <td class="px-2 py-1">{{ $project->finish_date }}</td>
 
                                 @if ($is_admin_user)
                                     <td class="px-2 py-1 flex items-center justify-start">

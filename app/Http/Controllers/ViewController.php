@@ -25,6 +25,16 @@ class ViewController extends Controller
         return view('projects')->with('user', $user);
     }
 
+    public function projectsData($id = null)
+    {
+        $project = Project::find($id);
+
+        if (!$project) {
+            abort(404);
+        }
+        return view('projects-dashboard')->with('project', $project);
+    }
+
     public function data($id = null)
     {
         if ($id) {
